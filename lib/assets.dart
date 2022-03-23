@@ -8,4 +8,13 @@ class Assets {
   static const String map2 = "assets/map2.png";
   static const String map3 = "assets/map3.png";
   static const String map4 = "assets/map4.png";
+  static const String news1 = "assets/news1.png";
+  static const String news2 = "assets/news2.png";
+  static const String skill1 = "assets/skill1.png";
+  static const String skill2 = "assets/skill2.png";
+  static const String skill3 = "assets/skill3.png";
+  static const String skill4 = "assets/skill4.png";
+  static const String iconGraph = "assets/Graph.png";
+  static const String army = "assets/army.png";
+
   }

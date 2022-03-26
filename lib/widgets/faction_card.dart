@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test/Commander/main.dart';
 
 class FactionCardWidget extends StatefulWidget {
   late String _image;
@@ -17,11 +18,16 @@ class FactionCardWidget extends StatefulWidget {
 class _FactionCardWidgetState extends State<FactionCardWidget> {
   @override
   Widget build(BuildContext context) {
-    return faction_card();
+    return faction_card(context);
   }
 
-  Widget faction_card() {
-    return Container(
+  Widget faction_card(context) {
+    
+    return GestureDetector(
+      onTap: (){
+         Navigator.push(context,  MaterialPageRoute(builder: (context) => const Commander()),);
+      },
+      child: Container(
       margin: EdgeInsets.all(5),
       padding: EdgeInsets.only(left: 14),
       height: 156,
@@ -57,6 +63,7 @@ class _FactionCardWidgetState extends State<FactionCardWidget> {
           ],
         ))
       ]),
+    ),
     );
   }
 }

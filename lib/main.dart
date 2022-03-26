@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test/Account/main.dart';
+import 'package:test/HomeScreen/main.dart';
+import 'package:test/News/main.dart';
 import 'package:test/assets.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:test/widgets/ImageSlide.dart';
@@ -25,11 +28,103 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyStatefulWidget(),
     );
   }
 }
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
 
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Business',
+      style: optionStyle,
+    ),
+    Text(
+      'School',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+  Widget homeScreen = HomeScreen();
+  Widget accountScreen = Account();
+  Widget news = News();
+    Widget getBody( )  {
+    if(_selectedIndex == 0) {
+      return homeScreen;
+    } else if(_selectedIndex==4) {
+      return accountScreen;
+    }
+    else if(_selectedIndex==3) {
+      return news;
+    }
+     else {
+      return homeScreen;
+    }
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: null,
+      body: Center(
+        child: this.getBody(),
+      ),
+      bottomNavigationBar:  Theme(
+        child: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.videogame_asset_outlined),
+            label: 'State',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_box_outlined ),
+            label: 'LoadOut',
+          ),
+           BottomNavigationBarItem(
+            icon: Icon(Icons.newspaper),
+            label: 'News',
+          ),
+           BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Account',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
+      ), data: Theme.of(context).copyWith(
+        // sets the background color of the `BottomNavigationBar`
+        canvasColor: Color(0xff2A2E3D),
+        // sets the active color of the `BottomNavigationBar` if `Brightness` is light
+        primaryColor: Colors.red,
+        textTheme: Theme
+            .of(context)
+            .textTheme
+            .copyWith(caption: new TextStyle(color: Colors.yellow))),
+      ) 
+    );
+  }
+}
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -94,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

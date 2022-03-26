@@ -16,5 +16,9 @@ class Assets {
   static const String skill4 = "assets/skill4.png";
   static const String iconGraph = "assets/Graph.png";
   static const String army = "assets/army.png";
-
+  static const String recent = "assets/TimeCircle.png";
+  static const String setting = "assets/Filter.png";
+  static const String private = "assets/ShieldDone.png";
+  static const String feedback = "assets/Send.png";
+  static const String logout = "assets/Logout.png";
   }
